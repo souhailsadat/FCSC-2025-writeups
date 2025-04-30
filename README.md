@@ -4,4 +4,6 @@ The **France Cybersecurity Challenge (FCSC)** is a national Capture The Flag (CT
 
 The **FCSC 2025** took place from **Friday, April 18 to Sunday, April 27**, and included over **100 challenges** spanning traditional categories, along with a special **speedrun day** held on **Saturday, April 26**. More than **2,000 ethical hackers** joined this edition, facing high-quality challenges carefully crafted by **ANSSI** experts. I had the pleasure of participating in this exceptional event and proudly finished **58th out of 2,712 participants**. This repository contains a few **writeups** from the challenges I solved during the competition, along with a **certificate of participation**.
 
+---
+
 ![FCSC 2025 Certificate](https://github.com/user-attachments/assets/ffd81af3-3792-4de3-b7e9-01089a022203)
