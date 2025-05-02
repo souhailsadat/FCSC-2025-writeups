@@ -17,10 +17,7 @@ The binary runs on a remote server `nc chall.fcsc.fr 2105`. It asks for a filena
 
 # TL;DR
 
-- The binary reads a filename with `scanf("%s")` leading to a **stack buffer overflow**.
-- The stack is **non-executable (NX)**, so we use a **ROP chain** to spawn a shell.
-- We must avoid **space bytes** (`0x20`) in gadget addresses.
-- The full exploit is available in the file `solution.py`.
+The binary reads a filename using `scanf("%s")`, leading to a classic stack buffer overflow. With NX enabled, we craft a ROP chain to execute `execve("/bin/sh")`. The exploit must avoid space bytes (`0x20`) in gadget addresses, requiring careful gadget selection. The full exploit is implemented in `solution.py`.
 
 # Solution
 
